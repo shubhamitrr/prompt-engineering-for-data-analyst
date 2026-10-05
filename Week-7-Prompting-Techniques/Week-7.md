@@ -1,620 +1,303 @@
-***# Week 7 — Prompting Techniques***
+# Week 7 — Prompting Techniques
 
+## 1. Zero-Shot Prompting
 
+### Definition
 
-***## 1. Zero-Shot Prompting***
+Zero-shot prompting is a technique where an AI model performs a task without receiving any examples.
 
+### Example
 
+Classify the following customer review:
 
-***### Definition***
+> "The product quality is excellent."
 
+Output:
 
+**Positive**
 
-***Zero-shot prompting is a technique where an AI model is asked to perform a task without being given any examples.***
+### Key Point
 
+Zero-shot prompting means **no examples are provided before the task**.
 
+---
 
-***### Example***
+## 2. Few-Shot Prompting
 
+### Definition
 
+Few-shot prompting is a technique where an AI model receives a small number of examples before performing a similar task.
 
-***> Classify the following customer review as Positive, Negative, or Neutral:***
+### Example
 
-***>***
+```text
+Review: "The product is excellent."
+Answer: Positive
 
-***> "The product quality is excellent."***
+Review: "The product quality is very poor."
+Answer: Negative
 
+Review: "The product works perfectly."
+Answer:
+```
 
+Expected answer:
 
-***No example is provided, so this is a \*\*zero-shot prompt\*\*.***
+**Positive**
 
+### Key Point
 
+Few-shot prompting means **providing a few examples before the actual task**.
 
-***### Data Analyst Example***
+---
 
+## 3. Chain of Thought
 
+### Definition
 
-***> Find the top 5 products by sales from the provided dataset.***
+Chain of Thought prompting encourages an AI model to solve a complex problem through logical intermediate steps before providing the final answer.
 
+### Example
 
+A product costs ₹800 and is sold for ₹1,000.
 
-***### Key Point***
+```text
+Profit = 1000 - 800
+Profit = 200
 
+Profit Percentage = (200 / 800) × 100
+Profit Percentage = 25%
+```
 
+Answer:
 
-***\*\*Zero-shot = No examples + Direct task\*\****
+**25%**
 
+### Data Analyst Example
 
+Ask AI to calculate average sales by city and explain the calculation steps before providing the final result.
 
-***---***
+### Key Point
 
+**Complex problem → Logical steps → Final answer**
 
+---
 
-***## 2. Few-Shot Prompting***
+## 4. Hallucinations
 
+### Definition
 
+AI hallucination occurs when an AI model generates incorrect, unsupported, or invented information.
 
-***### Definition***
+### Example
 
+Suppose a dataset does not contain an `Age` column.
 
+If the AI says:
 
-***Few-shot prompting is a technique where an AI model is provided with a small number of examples before being asked to perform a similar task.***
+> "The average customer age is 32 years."
 
+This is a hallucination because the required data was not available.
 
+### How to Reduce Hallucinations
 
-***### Example***
+- Use only the provided data.
+- Do not invent values.
+- Avoid unsupported assumptions.
+- Clearly mention missing information.
+- Verify calculations.
 
+### Key Point
 
+**Hallucination = Incorrect or unsupported AI-generated information**
 
-***> Classify customer reviews as Positive or Negative.***
+---
 
-***>***
+## 5. Logic Problem Lab
 
-***> \*\*Example 1:\*\****  
+### Definition
 
-***> Review: "The product is excellent."***  
+A Logic Problem Lab is a practical exercise where AI is used to solve logical and reasoning problems.
 
-***> Answer: Positive***
+### Common Examples
 
-***>***
+- Number series
+- Logical puzzles
+- Ranking problems
+- Pattern identification
+- Data-based reasoning
 
-***> \*\*Example 2:\*\****  
+### Example
 
-***> Review: "The product quality is very poor."***  
+A is taller than B.
 
-***> Answer: Negative***
+B is taller than C.
 
-***>***
+Therefore:
 
-***> \*\*Now classify:\*\****  
+**A > B > C**
 
-***> Review: "The product works perfectly."***
+Answer:
 
+**C is the shortest.**
 
+### Data Analyst Example
 
-***Expected answer:***
+IT has more employees than HR.
 
+Sales has fewer employees than HR.
 
+Therefore:
 
-***\*\*Positive\*\****
+**IT > HR > Sales**
 
+Answer:
 
+**Sales has the fewest employees.**
 
-***### Data Analyst Example***
+### Key Point
 
+**Logic Problem Lab = AI-assisted logical problem solving**
 
+---
 
-***> \*\*Example 1:\*\****  
+## 6. Prompt Verification
 
-***> Sales = 10,000, Profit = 2,000***  
+### Definition
 
-***> Profit Margin = 20%***
+Prompt verification is the process of checking whether an AI-generated answer is accurate, complete, relevant, and supported by the available information.
 
-***>***
+### Important Checks
 
-***> \*\*Example 2:\*\****  
+- Data accuracy
+- Calculations
+- Missing information
+- Assumptions
+- Invented values
+- Relevance
 
-***> Sales = 5,000, Profit = 500***  
+### Example
 
-***> Profit Margin = 10%***
+```text
+Calculate the average salary of the employees.
 
-***>***
+Verify the calculation using the provided data before giving the final answer.
+```
 
-***> \*\*Now calculate:\*\****  
+### Verification Process
 
-***> Sales = 8,000, Profit = 1,600***
+**AI Answer → Check Data → Verify Calculation → Identify Errors → Final Answer**
 
+### Key Point
 
+**Prompt Verification = Checking AI output before using it**
 
-***### Key Point***
+---
 
+## 7. Prompt Improvement
 
+### Definition
 
-***\*\*Few-shot = Few examples + New task\*\****
+Prompt improvement is the process of modifying a prompt to make it clearer, more specific, reliable, and effective.
 
+### Weak Prompt
 
+```text
+Analyze my sales data.
+```
 
-***---***
+### Problems
 
+- The task is unclear.
+- The expected output is not defined.
+- No constraints are provided.
+- No verification instructions are provided.
 
+### Improved Prompt
 
-***## 3. Chain of Thought***
+```text
+You are a Senior Data Analyst.
 
+Analyze the provided sales dataset and identify the top 5 products by total sales.
 
+Use only the provided data.
+Do not invent values.
+Verify all calculations.
 
-***### Definition***
+Output:
+1. A results table
+2. Three key business insights
+```
 
+### Key Point
 
+**Prompt Improvement = Weak Prompt → Clear and effective prompt**
 
-***Chain of Thought prompting is a technique that encourages an AI model to solve a complex problem through intermediate reasoning steps before producing a final answer.***
+---
 
+## 8. Analytical Prompting
 
+### Definition
 
-***### Example***
+Analytical prompting is the practice of designing prompts that help AI analyze data, calculate metrics, identify patterns, and generate useful insights.
 
+### Common Analytical Tasks
 
+- Calculate totals
+- Calculate averages
+- Find top and bottom records
+- Identify trends
+- Compare categories
+- Identify patterns
+- Generate business insights
 
-***> A product costs ₹800 and is sold for ₹1,000. Calculate the profit percentage. Work through the calculation step by step and provide the final answer.***
+### Example
 
+Suppose a sales dataset contains:
 
+`Product, City, Sales, Profit, Quantity`
 
-***Calculation:***
+Prompt:
 
+```text
+You are a Senior Data Analyst.
 
+Analyze the sales dataset and identify the top 5 cities by total sales.
 
-***Profit = ₹1,000 − ₹800 = ₹200***
+Calculate the average profit for each city.
 
+Use only the provided data.
+Do not invent values.
+Verify all calculations.
 
+Output:
+1. A results table
+2. Three business insights
+```
 
-***Profit Percentage = (₹200 / ₹800) × 100***
+### Key Point
 
+**Analytical Prompting = AI + Data Analysis + Clear Instructions**
 
+---
 
-***Answer = \*\*25%\*\****
+# Week 7 Summary
 
+The major topics covered in Week 7 are:
 
+1. Zero-Shot Prompting
+2. Few-Shot Prompting
+3. Chain of Thought
+4. Hallucinations
+5. Logic Problem Lab
+6. Prompt Verification
+7. Prompt Improvement
+8. Analytical Prompting
 
-***### Data Analyst Example***
+## Final Takeaway
 
+Effective prompting combines:
 
+**Clear Instructions + Examples + Constraints + Verification + Analysis**
 
-***> Calculate the average sales for each city. Group the records by city, calculate the required values, verify the calculation, and provide the final result.***
-
-
-
-***### Key Point***
-
-
-
-***\*\*Chain of Thought = Complex problem → Step-by-step reasoning → Final answer\*\****
-
-
-
-***---***
-
-
-
-***## 4. Hallucinations***
-
-
-
-***### Definition***
-
-
-
-***AI hallucination occurs when an AI model generates information that is incorrect, unsupported by the provided data, or presented as a fact without sufficient evidence.***
-
-
-
-***### Example***
-
-
-
-***Suppose a dataset does not contain an Age column.***
-
-
-
-***> Find the average age of customers.***
-
-
-
-***If the AI responds:***
-
-
-
-***> The average customer age is 32 years.***
-
-
-
-***This is a hallucination because the required data was not available.***
-
-
-
-***### How to Reduce Hallucinations***
-
-
-
-***Use clear instructions such as:***
-
-
-
-***- Use only the provided data.***
-
-***- Do not invent values.***
-
-***- Do not make unsupported assumptions.***
-
-***- If information is missing, clearly state that it is unavailable.***
-
-***- Verify calculations before providing the final answer.***
-
-
-
-***### Key Point***
-
-
-
-***\*\*Hallucination = Unsupported or incorrect AI-generated information\*\****
-
-
-
-***---***
-
-
-
-***## 5. Logic Problem Lab***
-
-
-
-***### Definition***
-
-
-
-***A Logic Problem Lab is a practical exercise where AI is used to solve reasoning and logical problems through clear and structured prompts.***
-
-
-
-***### Common Examples***
-
-
-
-***- Number series***
-
-***- Logical puzzles***
-
-***- Ranking problems***
-
-***- Pattern identification***
-
-***- Data-based reasoning***
-
-
-
-***### Example***
-
-
-
-***> A is taller than B.***  
-
-***> B is taller than C.***  
-
-***> Who is the shortest?***
-
-
-
-***Logical relationship:***
-
-
-
-***\*\*A > B > C\*\****
-
-
-
-***Answer:***
-
-
-
-***\*\*C is the shortest.\*\****
-
-
-
-***### Data Analyst Example***
-
-
-
-***> IT has more employees than HR.***  
-
-***> Sales has fewer employees than HR.***  
-
-***> Which department has the fewest employees?***
-
-
-
-***Logical relationship:***
-
-
-
-***\*\*IT > HR > Sales\*\****
-
-
-
-***Answer:***
-
-
-
-***\*\*Sales\*\****
-
-
-
-***### Key Point***
-
-
-
-***\*\*Logic Problem Lab = AI-assisted logical problem solving\*\****
-
-
-
-***---***
-
-
-
-***## 6. Prompt Verification***
-
-
-
-***### Definition***
-
-
-
-***Prompt verification is the process of checking whether an AI-generated answer is accurate, complete, relevant, and supported by the provided information.***
-
-
-
-***### Why Verification Matters***
-
-
-
-***AI-generated outputs should not always be accepted without checking them.***
-
-
-
-***Important checks include:***
-
-
-
-***- Calculations***
-
-***- Data accuracy***
-
-***- Missing information***
-
-***- Assumptions***
-
-***- Invented values***
-
-***- Relevance***
-
-
-
-***### Example***
-
-
-
-***> Calculate the average salary of the employees and verify the calculation using the provided data before giving the final answer.***
-
-
-
-***### Verification Process***
-
-
-
-***\*\*AI Answer → Check Data → Verify Calculation → Identify Errors → Final Answer\*\****
-
-
-
-***### Key Point***
-
-
-
-***\*\*Prompt Verification = Checking AI output for accuracy and reliability\*\****
-
-
-
-***---***
-
-
-
-***## 7. Prompt Improvement***
-
-
-
-***### Definition***
-
-
-
-***Prompt improvement is the process of modifying a prompt to make it clearer, more specific, reliable, and effective.***
-
-
-
-***### Weak Prompt***
-
-
-
-***> Analyze my sales data.***
-
-
-
-***### Problems***
-
-
-
-***- The task is unclear.***
-
-***- The required output is not defined.***
-
-***- No constraints are provided.***
-
-***- No verification instruction is provided.***
-
-
-
-***### Improved Prompt***
-
-
-
-***> You are a Senior Data Analyst.***
-
-***>***
-
-***> Analyze the provided sales dataset and identify the top 5 products by total sales.***
-
-***>***
-
-***> Use only the provided data and do not invent values.***
-
-***>***
-
-***> Verify the calculations before giving the final answer.***
-
-***>***
-
-***> Show the results in a table and provide 3 key business insights.***
-
-
-
-***### Key Point***
-
-
-
-***\*\*Prompt Improvement = Weak Prompt → Clear and effective prompt\*\****
-
-
-
-***---***
-
-
-
-***## 8. Analytical Prompting***
-
-
-
-***### Definition***
-
-
-
-***Analytical prompting is the practice of designing prompts that help AI analyze data, identify patterns, calculate metrics, and generate useful insights.***
-
-
-
-***### Common Analytical Tasks***
-
-
-
-***- Calculate totals***
-
-***- Calculate averages***
-
-***- Find top or bottom records***
-
-***- Identify trends***
-
-***- Compare categories***
-
-***- Identify patterns***
-
-***- Generate business insights***
-
-
-
-***### Example***
-
-
-
-***Suppose a sales dataset contains:***
-
-
-
-***`Product, City, Sales, Profit, Quantity`***
-
-
-
-***Prompt:***
-
-
-
-***> You are a Senior Data Analyst.***
-
-***>***
-
-***> Analyze the sales dataset and identify the top 5 cities by total sales.***
-
-***>***
-
-***> Calculate the average profit for each city.***
-
-***>***
-
-***> Use only the provided data.***
-
-***>***
-
-***> Verify all calculations before giving the final answer.***
-
-***>***
-
-***> Show the results in a table and provide 3 business insights.***
-
-
-
-***### Key Point***
-
-
-
-***\*\*Analytical Prompting = AI + Data Analysis + Clear Instructions\*\****
-
-
-
-***---***
-
-
-
-***# Week 7 Summary***
-
-
-
-***The major topics covered in Week 7 are:***
-
-
-
-***1. Zero-Shot Prompting***
-
-***2. Few-Shot Prompting***
-
-***3. Chain of Thought***
-
-***4. Hallucinations***
-
-***5. Logic Problem Lab***
-
-***6. Prompt Verification***
-
-***7. Prompt Improvement***
-
-***8. Analytical Prompting***
-
-
-
-***### Final Takeaway***
-
-
-
-***Effective prompting involves:***
-
-
-
-***\*\*Clear Instructions + Examples + Constraints + Verification + Analysis\*\****
-
-
-
-***These techniques help create more reliable and useful AI-assisted workflows for data analysis.***
-
+These techniques help create reliable and useful AI-assisted workflows for data analysis.
